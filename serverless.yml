@@ -1,0 +1,45 @@
+org: renukartamboli
+app: crud-demo
+service: db-crud-op-demo
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  create:
+    handler: index.create
+    events:
+      - httpApi:
+          path: /user
+          method: post
+
+  getOne:
+    handler: index.getOne
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: get
+  getAll:
+    handler: index.getAll
+    events:
+      - httpApi:
+          path: /user
+          method: get
+  delete:
+    handler: index.delete
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: delete
+  update:
+    handler: index.update
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: put
+   
